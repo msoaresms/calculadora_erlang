@@ -1,5 +1,7 @@
 Calculadora Distribuída em Erlang
 
+Repositório: https://github.com/msoaresms/calculadora_erlang
+
 Alunos:
     Arthur Gomes Valadao - 1615080452
     Matheus Soares da Silva - 1815310065
