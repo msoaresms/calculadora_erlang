@@ -1,0 +1,8 @@
+Calculadora Distribuída em Erlang
+
+Alunos:
+    Arthur Gomes Valadao - 1615080452
+    Matheus Soares da Silva - 1815310065
+    Diego Silva da Cunha - 1815310090
+    Icaro Santos Pereira - 1815310070
+    Eduardo Jorge Firmino de Paiva - 1815310005
