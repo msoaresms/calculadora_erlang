@@ -63,14 +63,14 @@ evaluate_aux(Elem) ->
             ListaA = lists:droplast(Stack),
             B = lists:last(ListaA),
             ListaB = lists:droplast(ListaA),
-            put("stack", ListaB ++ [rpc:call(get("multiplicacao"), multiplicacao, multiplicação, [B - A])]);
+            put("stack", ListaB ++ [rpc:call(get("multiplicacao"), multiplicacao, multiplicacao, [B, A])]);
         Elem == "/" ->
             Stack = get("stack"),
             A = lists:last(Stack),
             ListaA = lists:droplast(Stack),
             B = lists:last(ListaA),
             ListaB = lists:droplast(ListaA),
-            put("stack", ListaB ++ [rpc:call(get("divisao"), divisao, divisao, [B - A])]);
+            put("stack", ListaB ++ [rpc:call(get("divisao"), divisao, divisao, [B, A])]);
         true ->
             {Num, Error} = string:to_integer(Elem),
             put("stack", get("stack") ++ [Num])
@@ -80,6 +80,15 @@ evaluate([]) -> ok;
 evaluate([H|T]) ->
     evaluate_aux(H),
     evaluate(T).
+
+loop() ->
+    put("stack", []),
+    ENTRADA = p(read_input()),
+    Entrada_f = split(ENTRADA, " ", all),
+    evaluate(Entrada_f),
+    io:write(get("stack")),
+    io:fwrite("\n"),
+    loop().
 
 start() ->
     io:fwrite("\n"),
@@ -103,8 +112,4 @@ start() ->
         receive divisao_on -> io:fwrite("DIVISÃO ON\n") end
     ],
 
-    put("stack", []),
-    ENTRADA = p(read_input()),
-    Entrada_f = split(ENTRADA, " ", all),
-    evaluate(Entrada_f),
-    io:write(get("stack")).
+    loop().
